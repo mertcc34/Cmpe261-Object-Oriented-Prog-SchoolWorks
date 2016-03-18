@@ -25,10 +25,10 @@ public class Main {
 		Scanner input=new Scanner(System.in);
 
 		
-		System.out.println("What would you like to do ? Available Commands : add, show by category, modify, remove, search by serial ");
+		
 		
 		while(true){
-		
+			System.out.println("What would you like to do ? Available Commands : add, modify, remove, search ");
 			
 			String first=input.next();
 		
@@ -99,7 +99,6 @@ public class Main {
 			}
 				
 			System.out.println("Done!");
-			System.out.println("What would you like to do ? Available Commands : add, show, modify, remove, search");
 		}
 		
 		
@@ -144,16 +143,176 @@ public class Main {
 			}
 			
 			System.out.println("Done!");
-			System.out.println("What would you like to do now ? Available Commands : add, show, modify, remove, search ");				
 		}
 		
+		if("search".equals(first)){
+			
+			System.out.println("Please enter the serial number");
+			int serialIn =input.nextInt();
+			
+			for(Asset e : allAssets){
+				
+				if (e.getSerial() == serialIn){
+					System.out.println("Found!");
+					System.out.println(e.toString());
+					
+				}
+				
+				
+				
+			}
+			
+			System.out.println("Done");
+			
+		}
 		
+		if("remove".equals(first)){
+			
+			System.out.println("Please enter the serial number of the product to be removed");
+			int serialRemove = input.nextInt();
+			
+			for(Asset e : allAssets){
+				
+				if (e.getSerial() == serialRemove){
+					System.out.println("Found!");
+					System.out.println("Removing");
+					System.out.println(e.toString());
+					
+					allAssets.remove(e);
+					
+					System.out.println("This item is removed");
+					
+				}
+			
+			}
+				for(Automobile x : automobiles){
+					if (x.getSerial() == serialRemove){
+						automobiles.remove(x);
+					}	
+				}
+				
+				for(CompactDisk c : compactDisk){
+					if (c.getSerial() == serialRemove){
+						compactDisk.remove(c);
+					}	
+				}
+				for(ElectronicApp v : electronicApp){
+					if (v.getSerial() == serialRemove){
+						electronicApp.remove(v);
+					}	
+				}
+				for(Furniture f : furnitures){
+					if (f.getSerial() == serialRemove){
+						furnitures.remove(f);
+					}	
+				}
+				
+				
+				System.out.println("Done");
 		
+			}
 		
-		
-		
-		
-		
+		if ( "modify".equals(first)) {
+			
+			System.out.println("Please enter the category of the asset you want to modify. Available : electronic, automobile, furniture, compact");
+			String catModify = input.next();
+			
+			if("electronic".equals(catModify)){
+				System.out.println("Please enter the serial number of asset you want to modify");
+				int serialE = input.nextInt();
+				
+				for (ElectronicApp e : electronicApp){
+					
+					if(e.getSerial()==serialE){
+						allAssets.remove(e);
+						System.out.println("Please re-enter its serial number");
+						int serialElMod = input.nextInt();
+						e.setSerial(serialElMod);
+						System.out.println("Please re-enter its name");
+						String nameEl = input.next();
+						e.setName(nameEl);
+						allAssets.add(e);
+						
+					}
+					
+				}
+				
+				
+			}
+			
+			if("automobile".equals(catModify)){
+				System.out.println("Please enter the serial number of asset you want to modify");
+				int serialE = input.nextInt();
+				
+				for (Automobile e : automobiles){
+					
+					if(e.getSerial()==serialE){
+						allAssets.remove(e);
+						System.out.println("Please re-enter its serial number");
+						int serialElMod = input.nextInt();
+						e.setSerial(serialElMod);
+						System.out.println("Please re-enter its color");
+						String colorEl = input.next();
+						e.setColor(colorEl);
+						System.out.println("Please re-enter its model year");
+						int modelEl = input.nextInt();
+						e.setModel(modelEl);
+						allAssets.add(e);
+						
+					}
+					
+				}
+				
+				
+			}
+			
+			if("furniture".equals(catModify)){
+				System.out.println("Please enter the serial number of asset you want to modify");
+				int serialE = input.nextInt();
+				
+				for (Furniture e : furnitures){
+					
+					if(e.getSerial()==serialE){
+						allAssets.remove(e);
+						System.out.println("Please re-enter its serial number");
+						int serialElMod = input.nextInt();
+						e.setSerial(serialElMod);
+						System.out.println("Please re-enter its color");
+						String colorEl = input.next();
+						e.setColor(colorEl);
+						allAssets.add(e);
+						
+					}
+					
+				}
+				
+				
+			}
+			
+			if("compact".equals(catModify)){
+				System.out.println("Please enter the serial number of asset you want to modify");
+				int serialE = input.nextInt();
+				
+				for (CompactDisk e : compactDisk){
+					
+					if(e.getSerial()==serialE){
+						allAssets.remove(e);
+						System.out.println("Please re-enter its serial number");
+						int serialElMod = input.nextInt();
+						e.setSerial(serialElMod);
+						System.out.println("Please re-enter its capacity");
+						Double capEl = input.nextDouble();
+						e.setCapacity(capEl);
+						allAssets.add(e);
+						
+					}
+					
+				}
+				
+				
+			}
+			
+		}
 		
 		
 		
