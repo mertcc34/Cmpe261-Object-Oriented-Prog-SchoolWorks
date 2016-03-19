@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 
@@ -15,13 +16,17 @@ public class Main {
 	 */
 	
 	public static void main(String[] args) {
-		
+		/**
+		 * Arraylists that holds the added assets
+		 */
 		ArrayList<Automobile> automobiles = new ArrayList<Automobile>();
 		ArrayList<Furniture> furnitures = new ArrayList<Furniture>();
 		ArrayList<ElectronicApp> electronicApp = new ArrayList<ElectronicApp>();
 		ArrayList<CompactDisk> compactDisk = new ArrayList<CompactDisk>();
 		ArrayList<Asset> allAssets = new ArrayList<Asset>();
-
+		/**
+		 * Scanner object
+		 */
 		Scanner input=new Scanner(System.in);
 
 		
@@ -33,12 +38,19 @@ public class Main {
 			String first=input.next();
 		
 		
-		
+		/**
+		 * The first if condition checks if the operation 
+		 * that wanted to do
+		 * is add operation or not.
+		 * 
+		 */
 		if("add".equals(first)){
 			
 			System.out.println("What type would you like to add ? Available : electronic, automobile, furniture, compact  ");
 			String add = input.next();
-			
+			/**
+			 * electronic add operation
+			 */
 			if("electronic".equals(add)){
 				System.out.println("Please enter its serial number");
 				int serial = input.nextInt();
@@ -52,7 +64,9 @@ public class Main {
 				electronicApp.add(temp);
 				allAssets.add(temp);
 			}
-			
+			/**
+			 * automobile add operation
+			 */
 			if("automobile".equals(add)){
 				System.out.println("Please enter its serial number");
 				int serial = input.nextInt();
@@ -69,7 +83,9 @@ public class Main {
 				automobiles.add(temp);
 				allAssets.add(temp);
 			}
-			
+			/**
+			 * furniture add operation
+			 */
 			if("furniture".equals(add)){
 				System.out.println("Please enter its serial number");
 				int serial = input.nextInt();
@@ -84,6 +100,10 @@ public class Main {
 				allAssets.add(temp);
 			}
 			
+			
+			/**
+			 * compact disk add operation
+			 */
 			if("compact".equals(add)){
 				System.out.println("Please enter its serial number");
 				int serial = input.nextInt();
@@ -105,13 +125,19 @@ public class Main {
 		
 		
 		
-		
+		/**
+		 * 
+		 * Show operaiton
+		 * 
+		 */
 		
 		if("show".equals(first)){
 			
 			System.out.println("Which category would you want to see ? Available : electronic, automobile, furniture, compact");
 			String category = input.next();
-			
+			/**
+			 * shows the electronic category assets
+			 */
 			if(category.equals("electronic")){
 				
 				for(ElectronicApp e : electronicApp){
@@ -119,6 +145,9 @@ public class Main {
 				}
 				
 			}
+			/**
+			 * shows the automobile category assets
+			 */
 			if(category.equals("automobile")){
 				
 				for(Automobile e : automobiles){
@@ -127,6 +156,10 @@ public class Main {
 				}
 				
 			}
+			
+			/**
+			 * shows the furniture category assets
+			 */
 			if(category.equals("furniture")){
 	
 				for(Furniture e : furnitures){
@@ -134,6 +167,10 @@ public class Main {
 				}
 	
 			}
+			
+			/**
+			 * shows the compact category assets
+			 */
 			if(category.equals("compact")){
 	
 				for(CompactDisk e : compactDisk){
@@ -144,6 +181,14 @@ public class Main {
 			
 			System.out.println("Done!");
 		}
+		
+		/**
+		 * 
+		 *search operation
+		 *based on the serial number
+		 *values of the assets.
+		 *
+		 */
 		
 		if("search".equals(first)){
 			
@@ -166,52 +211,69 @@ public class Main {
 			
 		}
 		
-		if("remove".equals(first)){
+		
+		/**
+		 * remove operation
+		 * based on the category and
+		 * serial number information
+		 * of the assets
+		 */
+		if("remove".equals(first)) {
 			
 			System.out.println("Please enter the serial number of the product to be removed");
 			int serialRemove = input.nextInt();
 			
-			for(Asset e : allAssets){
-				
-				if (e.getSerial() == serialRemove){
+			for(Iterator<Asset> it = allAssets.iterator(); it.hasNext();){
+				Asset anAsset = it.next();
+				if (anAsset.getSerial() == serialRemove){
 					System.out.println("Found!");
 					System.out.println("Removing");
-					System.out.println(e.toString());
+					System.out.println(anAsset.toString());
 					
-					allAssets.remove(e);
+					it.remove();
 					
 					System.out.println("This item is removed");
 					
 				}
 			
-			}
-				for(Automobile x : automobiles){
-					if (x.getSerial() == serialRemove){
-						automobiles.remove(x);
-					}	
-				}
+								
 				
-				for(CompactDisk c : compactDisk){
-					if (c.getSerial() == serialRemove){
-						compactDisk.remove(c);
-					}	
+			}
+			for(Iterator<ElectronicApp> it = electronicApp.iterator(); it.hasNext();){
+				Asset anAsset = it.next();
+				if (anAsset.getSerial() == serialRemove){
+					it.remove();
 				}
-				for(ElectronicApp v : electronicApp){
-					if (v.getSerial() == serialRemove){
-						electronicApp.remove(v);
-					}	
+			}
+			for(Iterator<Furniture> it = furnitures.iterator(); it.hasNext();){
+				Asset anAsset = it.next();
+				if (anAsset.getSerial() == serialRemove){
+					it.remove();
 				}
-				for(Furniture f : furnitures){
-					if (f.getSerial() == serialRemove){
-						furnitures.remove(f);
-					}	
+			}
+			for(Iterator<Automobile> it = automobiles.iterator(); it.hasNext();){
+				Asset anAsset = it.next();
+				if (anAsset.getSerial() == serialRemove){
+					it.remove();
 				}
+			}
+			for(Iterator<CompactDisk> it = compactDisk.iterator(); it.hasNext();){
+				Asset anAsset = it.next();
+				if (anAsset.getSerial() == serialRemove){
+					it.remove();
+				}
+			}
 				
 				
 				System.out.println("Done");
 		
 			}
-		
+		/**
+		 * Modify operation
+		 * first takes the category info
+		 * then find the wanted asset
+		 * let the user to re edit its data informations.
+		 */
 		if ( "modify".equals(first)) {
 			
 			System.out.println("Please enter the category of the asset you want to modify. Available : electronic, automobile, furniture, compact");
@@ -311,6 +373,8 @@ public class Main {
 				
 				
 			}
+			
+			
 			
 		}
 		
